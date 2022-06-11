@@ -53,6 +53,7 @@ namespace CarSalesUI.Forms
             this.btnClearDb.TabIndex = 1;
             this.btnClearDb.Text = "Clear Database";
             this.btnClearDb.UseVisualStyleBackColor = true;
+            this.btnClearDb.Click += new System.EventHandler(this.btnClearDb_Click);
             // 
             // Settings
             // 

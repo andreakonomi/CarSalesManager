@@ -122,5 +122,33 @@ namespace CarSalesUI.Forms
             double.TryParse(fields[3], out double priceFound);
             car.Price = priceFound;
         }
+
+        private void btnClearDb_Click(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show("Are you sure you want to reset the database of the application?", "Confimartion"
+                , MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+            if (res == DialogResult.OK)
+            {
+                ClearDatabase();
+            }
+        }
+
+        private void ClearDatabase()
+        {
+            try
+            {
+                using (IDbConnection conn = new SqlConnection(Helper.GetConnectionString("CarStoreDb")))
+                {
+                    conn.Query<dynamic>("delete from dbo.Inventory");
+                    conn.Query<dynamic>("delete from dbo.Sales");
+                }
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("There was an error while reseting the database, please check the database connection info!");
+            }        
+        }
     }
 }
