@@ -10,11 +10,21 @@ using System.Windows.Forms;
 
 namespace CarSalesUI
 {
-    public partial class Form1 : Form
+    public partial class Menu : Form
     {
-        public Form1()
+        public Menu()
         {
             InitializeComponent();
+        }
+
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSales_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
