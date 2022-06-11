@@ -42,6 +42,7 @@ namespace CarSalesUI.Forms
             this.btnImportCSV.TabIndex = 0;
             this.btnImportCSV.Text = "Import CSV";
             this.btnImportCSV.UseVisualStyleBackColor = true;
+            this.btnImportCSV.Click += new System.EventHandler(this.btnImportCSV_Click);
             // 
             // btnClearDb
             // 
