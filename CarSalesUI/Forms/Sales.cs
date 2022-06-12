@@ -16,6 +16,7 @@ namespace CarSalesUI.Forms
     {
         List<Car> cars = new List<Car>();
         List<Car> filteredList;
+        public bool CarSold;
 
         public Sales()
         {
@@ -39,8 +40,7 @@ namespace CarSalesUI.Forms
                 cars = new List<Car>();
             }
 
-            //bind the data to the display control
-            lsbCars.DataSource = cars;
+            BindListView(cars);
         }
 
         private void lsbCars_SelectedIndexChanged(object sender, EventArgs e)
@@ -93,16 +93,53 @@ namespace CarSalesUI.Forms
                     && (string.IsNullOrWhiteSpace(priceFilter) || x.Price.ToString() == priceFilter.ToString())
                 ).ToList();
 
-            lsbCars.DataSource = null;
-            lsbCars.DataSource = filteredList;
+            BindListView(filteredList);
+
         }
 
         private void btnRemoveFilters_Click(object sender, EventArgs e)
         {
             ClearFilterFields();
+            BindListView(cars);
+        }
 
+        private void btnSell_Click(object sender, EventArgs e)
+        {
+            Car selectedCar = lsbCars.SelectedItem as Car;
+
+            if (selectedCar is null)
+            {
+                return;
+            }
+
+            SaleConfirm frmSaleConfirm = new SaleConfirm(selectedCar, this);
+            frmSaleConfirm.ShowDialog();
+
+            // check result of what happened and adjust accordingly, if not sold no need to remove car from memory inventory
+            if (CarSold)
+            {
+                AdjustStateForSoldCar(selectedCar);
+
+                //reset variable state for next sell
+                CarSold = false;
+            }
+        }
+
+        private void AdjustStateForSoldCar(Car selectedCar)
+        {
+            cars.Remove(selectedCar);
+
+            // tell the listview to refresh its content
+            BindListView(cars);
+
+            ClearInfoFields();
+            ClearFilterFields();
+        }
+
+        private void BindListView(List<Car> carsList)
+        {
             lsbCars.DataSource = null;
-            lsbCars.DataSource = cars;
+            lsbCars.DataSource = carsList;
         }
     }
 }

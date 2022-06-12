@@ -38,10 +38,10 @@ namespace CarSalesUI.Forms
             this.lblYear = new System.Windows.Forms.Label();
             this.lblModel = new System.Windows.Forms.Label();
             this.btnConfirmSale = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtCustomer = new System.Windows.Forms.TextBox();
             this.txtPhoneNo = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtZip = new System.Windows.Forms.TextBox();
             this.lblZip = new System.Windows.Forms.Label();
             this.lblCustomer = new System.Windows.Forms.Label();
             this.lblAddress = new System.Windows.Forms.Label();
@@ -133,20 +133,19 @@ namespace CarSalesUI.Forms
             this.btnConfirmSale.TabIndex = 25;
             this.btnConfirmSale.Text = "Confirm Sale";
             this.btnConfirmSale.UseVisualStyleBackColor = true;
+            this.btnConfirmSale.Click += new System.EventHandler(this.btnConfirmSale_Click);
             // 
-            // textBox1
+            // txtAddress
             // 
-            this.textBox1.Location = new System.Drawing.Point(153, 170);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(186, 23);
-            this.textBox1.TabIndex = 28;
+            this.txtAddress.Location = new System.Drawing.Point(153, 170);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(186, 23);
+            this.txtAddress.TabIndex = 28;
             // 
             // txtCustomer
             // 
             this.txtCustomer.Location = new System.Drawing.Point(153, 40);
             this.txtCustomer.Name = "txtCustomer";
-            this.txtCustomer.ReadOnly = true;
             this.txtCustomer.Size = new System.Drawing.Size(186, 23);
             this.txtCustomer.TabIndex = 26;
             // 
@@ -154,17 +153,15 @@ namespace CarSalesUI.Forms
             // 
             this.txtPhoneNo.Location = new System.Drawing.Point(153, 103);
             this.txtPhoneNo.Name = "txtPhoneNo";
-            this.txtPhoneNo.ReadOnly = true;
             this.txtPhoneNo.Size = new System.Drawing.Size(186, 23);
             this.txtPhoneNo.TabIndex = 27;
             // 
-            // textBox4
+            // txtZip
             // 
-            this.textBox4.Location = new System.Drawing.Point(153, 241);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(186, 23);
-            this.textBox4.TabIndex = 29;
+            this.txtZip.Location = new System.Drawing.Point(153, 241);
+            this.txtZip.Name = "txtZip";
+            this.txtZip.Size = new System.Drawing.Size(186, 23);
+            this.txtZip.TabIndex = 29;
             // 
             // lblZip
             // 
@@ -228,12 +225,12 @@ namespace CarSalesUI.Forms
             // 
             this.grpCustomerInfo.Controls.Add(this.txtCustomer);
             this.grpCustomerInfo.Controls.Add(this.lblPhoneNo);
-            this.grpCustomerInfo.Controls.Add(this.textBox1);
+            this.grpCustomerInfo.Controls.Add(this.txtAddress);
             this.grpCustomerInfo.Controls.Add(this.lblAddress);
             this.grpCustomerInfo.Controls.Add(this.lblCustomer);
             this.grpCustomerInfo.Controls.Add(this.txtPhoneNo);
             this.grpCustomerInfo.Controls.Add(this.lblZip);
-            this.grpCustomerInfo.Controls.Add(this.textBox4);
+            this.grpCustomerInfo.Controls.Add(this.txtZip);
             this.grpCustomerInfo.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.grpCustomerInfo.Location = new System.Drawing.Point(413, 54);
             this.grpCustomerInfo.Name = "grpCustomerInfo";
@@ -250,6 +247,7 @@ namespace CarSalesUI.Forms
             this.btnCancelSale.TabIndex = 36;
             this.btnCancelSale.Text = "Cancel";
             this.btnCancelSale.UseVisualStyleBackColor = true;
+            this.btnCancelSale.Click += new System.EventHandler(this.btnCancelSale_Click);
             // 
             // SaleConfirm
             // 
@@ -285,10 +283,10 @@ namespace CarSalesUI.Forms
         private System.Windows.Forms.Label lblYear;
         private System.Windows.Forms.Label lblModel;
         private System.Windows.Forms.Button btnConfirmSale;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtCustomer;
         private System.Windows.Forms.TextBox txtPhoneNo;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtZip;
         private System.Windows.Forms.Label lblZip;
         private System.Windows.Forms.Label lblCustomer;
         private System.Windows.Forms.Label lblAddress;

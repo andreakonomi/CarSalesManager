@@ -33,5 +33,37 @@ namespace CarSalesUI.Processing
             }
 
         }
+
+        /// <summary>
+        /// Inserts the sale record and removes the car from the inventory.
+        /// </summary>
+        public static bool SellCarToCustomer(Car car, Customer customer)
+        {
+            try
+            {
+                using (IDbConnection conn = new SqlConnection(_connString))
+                {
+                    conn.Query("dbo.AddSaleRecord",
+                        new
+                        {
+                            customerName = customer.CustomerName,
+                            phoneNo = customer.PhoneNo,
+                            address = customer.Address,
+                            zipCodeCity = customer.ZipCodeCity,
+                            carFullModel = $"{car.Brand} {car.Model} ({car.Year})",
+                            priceSold = car.Price
+                        },
+                        commandType: CommandType.StoredProcedure);
+
+                    conn.Query("dbo.RemoveCarFromInventory", new { carId = car.Id }, commandType: CommandType.StoredProcedure);
+                }
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }        
+        }
     }
 }

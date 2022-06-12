@@ -198,6 +198,7 @@ namespace CarSalesUI.Forms
             this.btnSell.TabIndex = 16;
             this.btnSell.Text = "Sell";
             this.btnSell.UseVisualStyleBackColor = true;
+            this.btnSell.Click += new System.EventHandler(this.btnSell_Click);
             // 
             // lblAvailableCars
             // 
