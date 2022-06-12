@@ -265,6 +265,7 @@ namespace CarSalesUI.Forms
             this.btnExportSales.TabIndex = 20;
             this.btnExportSales.Text = "Export Sales";
             this.btnExportSales.UseVisualStyleBackColor = true;
+            this.btnExportSales.Click += new System.EventHandler(this.btnExportSales_Click);
             // 
             // lsbCars
             // 

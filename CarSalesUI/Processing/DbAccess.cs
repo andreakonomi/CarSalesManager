@@ -49,12 +49,12 @@ namespace CarSalesUI.Processing
             {
                 using (IDbConnection conn = new SqlConnection(_connString))
                 {
-                    carsFound = conn.Query<Car>("select * from Inventory").ToList();
+                    carsFound = conn.Query<Car>("select * from dbo.Inventory").ToList();
                 }
 
                 return carsFound;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return null;
             }
@@ -87,10 +87,20 @@ namespace CarSalesUI.Processing
 
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }        
+        }
+
+        public static List<SaleModel> GetAllSales()
+        {
+            using (IDbConnection conn = new SqlConnection(_connString))
+            {
+                List<SaleModel> sales = conn.Query<SaleModel>("select * from dbo.Sales").ToList();
+
+                return sales;
+            }
         }
     }
 }

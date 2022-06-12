@@ -1,4 +1,6 @@
 -- store procedure to insert a new inventory line
+[USE CarStoreDb]
+
 CREATE PROCEDURE dbo.insertNewInventoryCar
 	@brand nvarchar(50),
 	@model nvarchar(50),

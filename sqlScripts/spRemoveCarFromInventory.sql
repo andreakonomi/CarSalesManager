@@ -1,3 +1,5 @@
+USE CarStoreDb
+
 CREATE PROCEDURE dbo.RemoveCarFromInventory
 	@carId int
 AS

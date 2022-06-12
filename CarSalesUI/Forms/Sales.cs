@@ -2,12 +2,8 @@
 using CarSalesUI.Processing;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CarSalesUI.Forms
@@ -140,6 +136,41 @@ namespace CarSalesUI.Forms
         {
             lsbCars.DataSource = null;
             lsbCars.DataSource = carsList;
+        }
+
+        private void btnExportSales_Click(object sender, EventArgs e)
+        {
+            var folderBrowserDialog = new FolderBrowserDialog();
+            List<SaleModel> sales;
+
+            //Show the FodlerBrowserDialog
+            DialogResult result = folderBrowserDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string pathToSave = folderBrowserDialog.SelectedPath;
+
+                try
+                {
+                    sales = DbAccess.GetAllSales();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("There was an error while reading all sales. Check the database connection info.");
+                    return;
+                }
+
+                try
+                {
+                    Helper.ExportSalesOnMarkdownFile(pathToSave, sales);
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("There was an error while creating the sales records file.");
+                }         
+            }
+                
         }
     }
 }

@@ -1,19 +1,7 @@
 ﻿using CarSalesUI.Models;
 using CarSalesUI.Processing;
-using CsvHelper;
-using Dapper;
-using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CarSalesUI.Forms
@@ -50,7 +38,7 @@ namespace CarSalesUI.Forms
             {
                 carsImported = Helper.ReadCsvFile(fileName);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("There was an error while reading the csv file, check the format of the file.");
                 return;
@@ -60,7 +48,7 @@ namespace CarSalesUI.Forms
             {
                 DbAccess.UpdateInventoryOnDatabase(carsImported);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("There was an error while inserting records to the database, check the database connection info.");
                 return;
@@ -81,7 +69,7 @@ namespace CarSalesUI.Forms
                 {
                     DbAccess.ClearDatabase();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     MessageBox.Show("There was an error while reseting the database, please check the database connection info!");
                 }            

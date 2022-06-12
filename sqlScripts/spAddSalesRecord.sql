@@ -1,3 +1,4 @@
+USE CarStoreDb
 
 CREATE PROCEDURE dbo.AddSaleRecord
 	@customerName nvarchar(50),
