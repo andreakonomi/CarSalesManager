@@ -163,7 +163,7 @@ namespace CarSalesUI.Forms
                 try
                 {
                     Helper.ExportSalesOnMarkdownFile(pathToSave, sales);
-
+                    MessageBox.Show("Sales report has been exported successfully!");
                 }
                 catch (Exception ex)
                 {
