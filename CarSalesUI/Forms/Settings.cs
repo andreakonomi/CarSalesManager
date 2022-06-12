@@ -30,7 +30,7 @@ namespace CarSalesUI.Forms
             {
                 InitialDirectory = @"C:\",
                 Title = "Browse Csv file",
-                //Filter = "csv files (*.csv)|*.txt",
+                Filter = "CSV Files (*.csv)|*.csv",
                 CheckFileExists = true,
                 CheckPathExists = true
             };

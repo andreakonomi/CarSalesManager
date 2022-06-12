@@ -29,14 +29,13 @@ namespace CarSalesUI.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgCars = new System.Windows.Forms.DataGridView();
             this.txtBrand = new System.Windows.Forms.TextBox();
             this.txtModel = new System.Windows.Forms.TextBox();
             this.txtYear = new System.Windows.Forms.TextBox();
             this.txtPrice = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtFilterBrand = new System.Windows.Forms.TextBox();
+            this.txtFilterModel = new System.Windows.Forms.TextBox();
+            this.txtFilterPrice = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.lblSearchBrand = new System.Windows.Forms.Label();
             this.lblSearchModel = new System.Windows.Forms.Label();
@@ -48,22 +47,13 @@ namespace CarSalesUI.Forms
             this.btnSell = new System.Windows.Forms.Button();
             this.lblAvailableCars = new System.Windows.Forms.Label();
             this.grpSearch = new System.Windows.Forms.GroupBox();
+            this.btnRemoveFilters = new System.Windows.Forms.Button();
             this.grpSelectedCar = new System.Windows.Forms.GroupBox();
             this.btnExportSales = new System.Windows.Forms.Button();
-            this.btnRemoveFilters = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgCars)).BeginInit();
+            this.lsbCars = new System.Windows.Forms.ListBox();
             this.grpSearch.SuspendLayout();
             this.grpSelectedCar.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // dgCars
-            // 
-            this.dgCars.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgCars.Location = new System.Drawing.Point(438, 169);
-            this.dgCars.Name = "dgCars";
-            this.dgCars.ReadOnly = true;
-            this.dgCars.Size = new System.Drawing.Size(273, 305);
-            this.dgCars.TabIndex = 0;
             // 
             // txtBrand
             // 
@@ -97,26 +87,26 @@ namespace CarSalesUI.Forms
             this.txtPrice.Size = new System.Drawing.Size(186, 23);
             this.txtPrice.TabIndex = 4;
             // 
-            // textBox5
+            // txtFilterBrand
             // 
-            this.textBox5.Location = new System.Drawing.Point(11, 50);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(127, 23);
-            this.textBox5.TabIndex = 5;
+            this.txtFilterBrand.Location = new System.Drawing.Point(11, 50);
+            this.txtFilterBrand.Name = "txtFilterBrand";
+            this.txtFilterBrand.Size = new System.Drawing.Size(127, 23);
+            this.txtFilterBrand.TabIndex = 5;
             // 
-            // textBox6
+            // txtFilterModel
             // 
-            this.textBox6.Location = new System.Drawing.Point(195, 50);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(127, 23);
-            this.textBox6.TabIndex = 6;
+            this.txtFilterModel.Location = new System.Drawing.Point(195, 50);
+            this.txtFilterModel.Name = "txtFilterModel";
+            this.txtFilterModel.Size = new System.Drawing.Size(127, 23);
+            this.txtFilterModel.TabIndex = 6;
             // 
-            // textBox7
+            // txtFilterPrice
             // 
-            this.textBox7.Location = new System.Drawing.Point(378, 50);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(127, 23);
-            this.textBox7.TabIndex = 7;
+            this.txtFilterPrice.Location = new System.Drawing.Point(378, 50);
+            this.txtFilterPrice.Name = "txtFilterPrice";
+            this.txtFilterPrice.Size = new System.Drawing.Size(127, 23);
+            this.txtFilterPrice.TabIndex = 7;
             // 
             // btnSearch
             // 
@@ -127,6 +117,7 @@ namespace CarSalesUI.Forms
             this.btnSearch.TabIndex = 8;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // lblSearchBrand
             // 
@@ -212,7 +203,7 @@ namespace CarSalesUI.Forms
             // 
             this.lblAvailableCars.AutoSize = true;
             this.lblAvailableCars.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblAvailableCars.Location = new System.Drawing.Point(435, 141);
+            this.lblAvailableCars.Location = new System.Drawing.Point(454, 141);
             this.lblAvailableCars.Name = "lblAvailableCars";
             this.lblAvailableCars.Size = new System.Drawing.Size(100, 16);
             this.lblAvailableCars.TabIndex = 17;
@@ -221,9 +212,9 @@ namespace CarSalesUI.Forms
             // grpSearch
             // 
             this.grpSearch.Controls.Add(this.btnRemoveFilters);
-            this.grpSearch.Controls.Add(this.textBox7);
-            this.grpSearch.Controls.Add(this.textBox5);
-            this.grpSearch.Controls.Add(this.textBox6);
+            this.grpSearch.Controls.Add(this.txtFilterPrice);
+            this.grpSearch.Controls.Add(this.txtFilterBrand);
+            this.grpSearch.Controls.Add(this.txtFilterModel);
             this.grpSearch.Controls.Add(this.btnSearch);
             this.grpSearch.Controls.Add(this.lblSearchBrand);
             this.grpSearch.Controls.Add(this.lblSearchModel);
@@ -235,6 +226,17 @@ namespace CarSalesUI.Forms
             this.grpSearch.TabIndex = 18;
             this.grpSearch.TabStop = false;
             this.grpSearch.Text = "Search Cars";
+            // 
+            // btnRemoveFilters
+            // 
+            this.btnRemoveFilters.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnRemoveFilters.Location = new System.Drawing.Point(545, 20);
+            this.btnRemoveFilters.Name = "btnRemoveFilters";
+            this.btnRemoveFilters.Size = new System.Drawing.Size(138, 24);
+            this.btnRemoveFilters.TabIndex = 21;
+            this.btnRemoveFilters.Text = "Remove Filters";
+            this.btnRemoveFilters.UseVisualStyleBackColor = true;
+            this.btnRemoveFilters.Click += new System.EventHandler(this.btnRemoveFilters_Click);
             // 
             // grpSelectedCar
             // 
@@ -256,22 +258,22 @@ namespace CarSalesUI.Forms
             // 
             // btnExportSales
             // 
-            this.btnExportSales.Location = new System.Drawing.Point(619, 491);
+            this.btnExportSales.Location = new System.Drawing.Point(608, 491);
             this.btnExportSales.Name = "btnExportSales";
             this.btnExportSales.Size = new System.Drawing.Size(122, 37);
             this.btnExportSales.TabIndex = 20;
             this.btnExportSales.Text = "Export Sales";
             this.btnExportSales.UseVisualStyleBackColor = true;
             // 
-            // btnRemoveFilters
+            // lsbCars
             // 
-            this.btnRemoveFilters.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnRemoveFilters.Location = new System.Drawing.Point(545, 20);
-            this.btnRemoveFilters.Name = "btnRemoveFilters";
-            this.btnRemoveFilters.Size = new System.Drawing.Size(138, 24);
-            this.btnRemoveFilters.TabIndex = 21;
-            this.btnRemoveFilters.Text = "Remove Filters";
-            this.btnRemoveFilters.UseVisualStyleBackColor = true;
+            this.lsbCars.FormattingEnabled = true;
+            this.lsbCars.ItemHeight = 16;
+            this.lsbCars.Location = new System.Drawing.Point(457, 160);
+            this.lsbCars.Name = "lsbCars";
+            this.lsbCars.Size = new System.Drawing.Size(273, 292);
+            this.lsbCars.TabIndex = 21;
+            this.lsbCars.SelectedIndexChanged += new System.EventHandler(this.lsbCars_SelectedIndexChanged);
             // 
             // Sales
             // 
@@ -279,18 +281,17 @@ namespace CarSalesUI.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(36)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(753, 573);
+            this.Controls.Add(this.lsbCars);
             this.Controls.Add(this.btnExportSales);
             this.Controls.Add(this.grpSelectedCar);
             this.Controls.Add(this.grpSearch);
             this.Controls.Add(this.lblAvailableCars);
             this.Controls.Add(this.btnSell);
-            this.Controls.Add(this.dgCars);
             this.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Sales";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Sales";
-            ((System.ComponentModel.ISupportInitialize)(this.dgCars)).EndInit();
             this.grpSearch.ResumeLayout(false);
             this.grpSearch.PerformLayout();
             this.grpSelectedCar.ResumeLayout(false);
@@ -301,15 +302,13 @@ namespace CarSalesUI.Forms
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dgCars;
         private System.Windows.Forms.TextBox txtBrand;
         private System.Windows.Forms.TextBox txtModel;
         private System.Windows.Forms.TextBox txtYear;
         private System.Windows.Forms.TextBox txtPrice;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox txtFilterBrand;
+        private System.Windows.Forms.TextBox txtFilterModel;
+        private System.Windows.Forms.TextBox txtFilterPrice;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label lblSearchBrand;
         private System.Windows.Forms.Label lblSearchModel;
@@ -324,5 +323,6 @@ namespace CarSalesUI.Forms
         private System.Windows.Forms.GroupBox grpSelectedCar;
         private System.Windows.Forms.Button btnExportSales;
         private System.Windows.Forms.Button btnRemoveFilters;
+        private System.Windows.Forms.ListBox lsbCars;
     }
 }
