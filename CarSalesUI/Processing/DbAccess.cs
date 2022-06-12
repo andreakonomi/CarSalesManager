@@ -14,6 +14,33 @@ namespace CarSalesUI.Processing
     {
         private static string _connString = Helper.GetConnectionString("CarStoreDb");
 
+        public static void UpdateInventoryOnDatabase(List<CarImportModel> carsImported)
+        {
+            using (IDbConnection conn = new SqlConnection(Helper.GetConnectionString("CarStoreDb")))
+            {
+                conn.Query<dynamic>("delete from dbo.Inventory");
+
+                foreach (CarImportModel car in carsImported)
+                {
+                    conn.Query<dynamic>("insertNewInventoryCar", new { car.Brand, car.Model, car.Year, car.Price },
+                        commandType: CommandType.StoredProcedure);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Resets the database.
+        /// </summary>
+        public static void ClearDatabase()
+        {
+            using (IDbConnection conn = new SqlConnection(Helper.GetConnectionString("CarStoreDb")))
+            {
+                conn.Query<dynamic>("delete from dbo.Inventory");
+                conn.Query<dynamic>("delete from dbo.Sales");
+            }
+        }
+
+
         public static List<Car> GetAllAvailableCars()
         {
             List<Car> carsFound = new List<Car>();
